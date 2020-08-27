@@ -11,6 +11,7 @@ export class About {
     city:SingleSmallTextModel;
     fullAddress:SingleLargeTextModel;
     socialLinks:OnlineLinkDataModel[];
+    emails:SmallTextListDataModel[];
 }
 export class SingleSmallTextModel {
     Id:number;

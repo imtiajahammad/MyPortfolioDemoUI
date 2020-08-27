@@ -16,6 +16,9 @@
                 </h1>
               </div>
               
+              
+
+
              <div id="phonenumbersPortion">
                 <div *ngFor="let phones of about.phoneNumbers">
                   <h2 class="">+880
@@ -23,6 +26,14 @@
                   </h2>
                 </div>
              </div>
+
+             <div id="emailsPortion">
+              <div *ngFor="let email of about.emails">
+                <h4 class="">
+                <span class="text-info">{{email.Data}}</span>
+                </h4>
+              </div>
+           </div>
             
 
 
@@ -74,6 +85,10 @@
             </h4>
           </div>
        </div>
+
+
+
+      
 
 
             </div>
