@@ -1,0 +1,73 @@
+<div *ngFor="let careerAdjective of ab">
+
+    <div class="fullFortion">
+
+     <div id="personalQualitiesPortion">
+        personalQualities
+        <div *ngFor="let personalQualities of careerAdjective.personalQualities">
+          <h2 class="">
+          <span class="text-primary">{{personalQualities.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+
+     <div id="skillsByTopicPortion">
+        skillsByTopic
+        <div *ngFor="let skillsByTopic of careerAdjective.skillsByTopic">
+          <h2 class="">
+          <span class="text-primary">{{skillsByTopic.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+     <div id="briefAboutMePortion">
+        briefAboutMe
+        <div *ngFor="let briefAboutMe of careerAdjective.briefAboutMe">
+          <h2 class="">
+          <span class="text-primary">{{briefAboutMe.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+
+     <div id="myWorkFeaturesPortion">
+        myWorkFeatures
+        <div *ngFor="let myWorkFeatures of careerAdjective.myWorkFeatures">
+          <h2 class="">
+          <span class="text-primary">{{myWorkFeatures.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+
+     <div id="currentFocusPortion">
+        currentFocus
+        <div *ngFor="let currentFocus of careerAdjective.currentFocus">
+          <h2 class="">
+          <span class="text-primary">{{currentFocus.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+     <div id="onlineResumeLinkPortion">
+        onlineResumeLink
+          <h2 class="">
+          <span class="text-primary">{{careerAdjective.onlineResumeLink.Data}}</span>
+          </h2>
+     </div>
+
+     <div id="detailsListPortion">
+        detailsList
+        <div *ngFor="let detailsList of careerAdjective.detailsList">
+          <h2 class="">
+          <span class="text-primary">{{detailsList.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+
+    </div>
+    
+  </div>
+
