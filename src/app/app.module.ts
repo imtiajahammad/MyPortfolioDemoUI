@@ -8,19 +8,22 @@ import { AboutService } from './about.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AcademicComponent } from './academic/academic.component';
 import { AcademicService } from './academic.service';
+import { CareerAdjectiveComponent } from './career-adjective/career-adjective.component';
+import { CareerAdjective } from './career-adjective';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-    AcademicComponent
+    AcademicComponent,
+    CareerAdjectiveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AboutService,AcademicService],
+  providers: [AboutService,AcademicService,CareerAdjective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
