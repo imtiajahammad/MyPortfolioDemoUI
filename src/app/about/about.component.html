@@ -1,13 +1,88 @@
 
-          <div *ngFor="let employee of ab">
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-              <div class="resume-content">
-                <h3 class="mb-0">{{employee.id}}</h3>
-    
+
+
+
+
+
+          <div *ngFor="let about of ab">
+            <div class="fullFortion">
+
+
+
+              <div class="" id="namePortion">
+                <h1 class="">{{about.FirstName.Data}}
+                  <span class="text-info">{{about.MiddleName.Data}}</span>
+                  <span class="text-primary"> {{about.LastName.Data}}</span>
+                </h1>
+              </div>
+              
+             <div id="phonenumbersPortion">
+                <div *ngFor="let phones of about.phoneNumbers">
+                  <h2 class="">+880
+                  <span class="text-primary">{{phones.Data}}</span>
+                  </h2>
+                </div>
+             </div>
             
-                <div class="subheading mb-3">{{employee.FirstName.Data}}</div>
+
+
+
+           <div id="languagePortion">
+            <div *ngFor="let language of about.languages">
+              <h4 class="">Languages: 
+              <span class="text-info">{{language.Data}}</span>
+              </h4>
+            </div>
+         </div>
+
+
+         <div class="" id="dobPortion">
+          <h3 class="text-info">Date of birth: 
+            <span class="text-info">{{about.DOB.Data| date:'dd'}}, {{about.DOB.Data| date:'MMMM'}}, {{about.DOB.Data| date:'yyyy'}}</span>
+          </h3>
+        </div>
+
+
+        <div class="" id="fullAddressPortion">
+          <h4 class="text-info">{{about.fullAddress.Data}}
+          </h4>
+        </div>
+
+
+
+        <div class="" id="cityCountryPortion">
+          <h3 class="text-info">{{about.city.Data}}, {{about.country.Data}}
+          </h3>
+        </div>
+
+
+
+
+        <div id="briefPortion">
+          <div *ngFor="let brief of about.brief">
+            <h4 class="">
+            <span class="text-info">{{brief.Data}}</span>
+            </h4>
+          </div>
+       </div>
+
+
+        <div id="socialLinkPortion">
+          <div *ngFor="let socialLinks of about.socialLinks">
+            <h4 class="">
+            <span class="text-info">{{socialLinks.Title}}</span>
+            </h4>
+          </div>
+       </div>
+
+
+            </div>
+          </div>
+
+                <!--
                 <div class="subheading mb-3">{{employee.MiddleName.Data}}</div>
                 <div class="subheading mb-3">{{employee.LastName.Data}}</div>
+-->
                 <!--
                 <div *ngIf="employee.description">
                   <p>{{employee.description.about}}</p>
@@ -16,12 +91,8 @@
                   </ul>
                 </div>
             -->
-              </div>
-<!--
+            <!--
               <div class="resume-date text-md-right">
                 <span class="text-primary">{{employee.startDate}} - {{employee.endDate}}</span>
               </div>
             -->
-            </div>
-          </div>
-
