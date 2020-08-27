@@ -6,18 +6,21 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { AboutService } from './about.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AcademicComponent } from './academic/academic.component';
+import { AcademicService } from './academic.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    AcademicComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AboutService],
+  providers: [AboutService,AcademicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
