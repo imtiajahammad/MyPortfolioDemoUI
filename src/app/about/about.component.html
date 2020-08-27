@@ -1,0 +1,27 @@
+
+          <div *ngFor="let employee of ab">
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+              <div class="resume-content">
+                <h3 class="mb-0">{{employee.id}}</h3>
+    
+            
+                <div class="subheading mb-3">{{employee.FirstName.Data}}</div>
+                <div class="subheading mb-3">{{employee.MiddleName.Data}}</div>
+                <div class="subheading mb-3">{{employee.LastName.Data}}</div>
+                <!--
+                <div *ngIf="employee.description">
+                  <p>{{employee.description.about}}</p>
+                  <ul *ngFor="let aa of employee.description.points">
+                    <li [innerHTML]="aa"></li>
+                  </ul>
+                </div>
+            -->
+              </div>
+<!--
+              <div class="resume-date text-md-right">
+                <span class="text-primary">{{employee.startDate}} - {{employee.endDate}}</span>
+              </div>
+            -->
+            </div>
+          </div>
+
