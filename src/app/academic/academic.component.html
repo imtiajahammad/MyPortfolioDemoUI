@@ -1,0 +1,45 @@
+<div *ngFor="let academic of ab">
+
+    <div class="fullFortion">
+
+      <div class="" id="institutionNamePortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.institutionName.Data}}</span>
+        </h1>
+      </div>
+      <div class="" id="locationPortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.location.Data}}</span>
+        </h1>
+      </div>
+      <div class="" id="courseNamePortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.courseName.Data}}</span>
+        </h1>
+      </div>
+      <div class="" id="cgpaPortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.cgpa.Data}}</span>
+        </h1>
+      </div>
+      <div class="" id="startPortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.start.Data}}</span>
+        </h1>
+      </div>
+      <div class="" id="endPortion">
+        <h1 class=""><!--{{academic.institutionName.Data}}-->
+          <span class="text-info">{{academic.end.Data}}</span>
+        </h1>
+      </div>
+     <div id="briefPointPortion">
+        <div *ngFor="let brief of academic.briefPoint">
+          <h2 class="">
+          <span class="text-primary">{{brief.Data}}</span>
+          </h2>
+        </div>
+     </div>
+
+    </div>
+    
+  </div>
