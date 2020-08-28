@@ -1,0 +1,63 @@
+<div *ngFor="let experience of ab">
+    <div class="fullFortion">
+        <div id="companyNamePortion">
+            companyName
+              <h2 class="">
+              <span class="text-primary">{{experience.companyName.Data}}</span>
+              </h2>
+         </div>
+         <div id="yourRolePortion">
+            yourRole
+              <h2 class="">
+              <span class="text-primary">{{experience.yourRole.Data}}</span>
+              </h2>
+         </div>
+         <div id="responsibilityBriefPortion">
+            responsibilityBrief
+              <h2 class="">
+              <span class="text-primary">{{experience.responsibilityBrief.Data}}</span>
+              </h2>
+         </div>
+
+         <div id="responsibilitiesPointsPortion">
+            responsibilitiesPoints
+            <div *ngFor="let responsibilitiesPoints of experience.responsibilitiesPoints">
+              <h2 class="">
+              <span class="text-primary">{{responsibilitiesPoints.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="accomplishmentsPointsPortion">
+            accomplishmentsPoints
+            <div *ngFor="let accomplishmentsPoints of experience.accomplishmentsPoints">
+              <h2 class="">
+              <span class="text-primary">{{accomplishmentsPoints.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="workLocationPortion">
+            workLocation
+              <h2 class="">
+              <span class="text-primary">{{experience.workLocation.Data}}</span>
+              </h2>
+         </div>
+         <div id="startDatePortion">
+            startDate
+              <h2 class="">
+              <span class="text-primary">{{experience.startDate.Data}}</span>
+              </h2>
+         </div>
+         <div id="endDatePortion">
+            endDate
+              <h2 class="">
+              <span class="text-primary">{{experience.endDate.Data}}</span>
+              </h2>
+         </div>
+         <div id="companyLinkPortion">
+            companyLink
+              <h2 class="">
+              <span class="text-primary">{{experience.companyLink.Data}}</span>
+              </h2>
+         </div>
+    </div>
+</div>
