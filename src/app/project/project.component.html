@@ -1,0 +1,108 @@
+<div *ngFor="let project of ab">
+    <div class="fullPortion">
+
+
+        <div id="technologyTypePortion">
+            technologyType
+            <div *ngFor="let technologyType of project.technologyType">
+              <h2 class="">
+              <span class="text-primary">{{technologyType.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="imagesPortion">
+            images
+            <div *ngFor="let images of project.images">
+              <h2 class="">
+              <span class="text-primary">{{images.Data}}</span>
+              </h2>
+            </div>
+         </div>
+
+        <div id="projectNamePortion">
+            projectName
+              <h2 class="">
+              <span class="text-primary">{{project.projectName.Data}}</span>
+              </h2>
+         </div>
+         <div id="projectSubNamePortion">
+            projectSubName
+            <h2 class="">
+            <span class="text-primary">{{project.projectSubName.Data}}</span>
+            </h2>
+       </div>
+
+         <div id="projectBriefPortion">
+            projectBrief
+            <div *ngFor="let projectBrief of project.projectBrief">
+              <h2 class="">
+              <span class="text-primary">{{projectBrief.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="projectKeyPointsPortion">
+            projectKeyPoints
+            <div *ngFor="let projectKeyPoints of project.projectKeyPoints">
+              <h2 class="">
+              <span class="text-primary">{{projectKeyPoints.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="projectTechnologyBriefPortion">
+            projectTechnologyBrief
+            <div *ngFor="let projectTechnologyBrief of project.projectTechnologyBrief">
+              <h2 class="">
+              <span class="text-primary">{{projectTechnologyBrief.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="projectTechnologiesPortion">
+            projectTechnologies
+            <div *ngFor="let projectTechnologies of project.projectTechnologies">
+              <h2 class="">
+              <span class="text-primary">{{projectTechnologies.Data}}</span>
+              </h2>
+            </div>
+         </div>
+         <div id="projectTechnologiesIconsPortion">
+            projectTechnologiesIcons
+            <div *ngFor="let projectTechnologiesIcons of project.projectTechnologiesIcons">
+              <h2 class="">
+              <span class="text-primary">{{projectTechnologiesIcons.Data}}</span>
+              </h2>
+            </div>
+         </div>
+
+         <div id="projectLiveLinkPortion">
+            projectLiveLink
+            <h2 class="">
+            <span class="text-primary">{{project.projectLiveLink.Data}}</span>
+            </h2>
+       </div>
+
+       <div id="projectSourceLinkPortion">
+        projectSourceLink
+        <h2 class="">
+        <span class="text-primary">{{project.projectSourceLink.Data}}</span>
+        </h2>
+   </div>
+
+   <div id="dateCreatedPortion">
+    dateCreated            
+    <h2 class="">
+    <span class="text-primary">{{project.dateCreated.Data}}</span>
+    </h2>
+</div>
+
+<div id="oneSingleBriefForWholeProjectPortion">
+    oneSingleBriefForWholeProject
+    <h2 class="">
+    <span class="text-primary">{{project.oneSingleBriefForWholeProject.Data}}</span>
+    </h2>
+</div>
+
+
+
+
+    </div>
+</div>
