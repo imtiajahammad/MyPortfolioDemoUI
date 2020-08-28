@@ -1,0 +1,28 @@
+<div *ngFor="let skill of ab">
+    <div class="fullPortion">
+
+        <div id="topicNamePortion">
+            topicName
+              <h2 class="">
+              <span class="text-primary">{{skill.topicName.Data}}</span>
+              </h2>
+         </div>
+
+
+        <div id="subTopicNamePortion">
+            subTopicName
+            <div *ngFor="let subTopicName of skill.subTopicName">
+              <h2 class="">
+              <span class="text-primary">{{subTopicName.Data}}</span>
+              </h2>
+            </div>
+         </div>
+
+        <div id="percentagePortion">
+            percentage
+              <h2 class="">
+              <span class="text-primary">{{skill.percentage.Data}}</span>
+              </h2>
+         </div>
+    </div>
+</div>
