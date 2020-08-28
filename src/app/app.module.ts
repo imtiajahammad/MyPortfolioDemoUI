@@ -14,6 +14,8 @@ import { ExperienceComponent } from './experience/experience.component';
 import { ExperienceService } from './experience.service';
 import { SelfImageComponent } from './self-image/self-image.component';
 import { SelfImageService } from './self-image.service';
+import { ProjectComponent } from './project/project.component';
+import { ProjectService } from './project.service';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,15 @@ import { SelfImageService } from './self-image.service';
     AcademicComponent,
     CareerAdjectiveComponent,
     ExperienceComponent,
-    SelfImageComponent
+    SelfImageComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AboutService,AcademicService,CareerAdjective,ExperienceService,SelfImageService],
+  providers: [AboutService,AcademicService,CareerAdjective,ExperienceService,SelfImageService,ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
