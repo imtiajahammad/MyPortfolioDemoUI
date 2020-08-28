@@ -10,20 +10,23 @@ import { AcademicComponent } from './academic/academic.component';
 import { AcademicService } from './academic.service';
 import { CareerAdjectiveComponent } from './career-adjective/career-adjective.component';
 import { CareerAdjective } from './career-adjective';
+import { ExperienceComponent } from './experience/experience.component';
+import { ExperienceService } from './experience.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     AcademicComponent,
-    CareerAdjectiveComponent
+    CareerAdjectiveComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AboutService,AcademicService,CareerAdjective],
+  providers: [AboutService,AcademicService,CareerAdjective,ExperienceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
