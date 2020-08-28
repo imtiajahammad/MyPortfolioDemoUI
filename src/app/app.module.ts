@@ -12,6 +12,8 @@ import { CareerAdjectiveComponent } from './career-adjective/career-adjective.co
 import { CareerAdjective } from './career-adjective';
 import { ExperienceComponent } from './experience/experience.component';
 import { ExperienceService } from './experience.service';
+import { SelfImageComponent } from './self-image/self-image.component';
+import { SelfImageService } from './self-image.service';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,15 @@ import { ExperienceService } from './experience.service';
     AboutComponent,
     AcademicComponent,
     CareerAdjectiveComponent,
-    ExperienceComponent
+    ExperienceComponent,
+    SelfImageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AboutService,AcademicService,CareerAdjective,ExperienceService],
+  providers: [AboutService,AcademicService,CareerAdjective,ExperienceService,SelfImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
