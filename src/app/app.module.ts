@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { AboutService } from './about.service';
@@ -18,6 +18,8 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectService } from './project.service';
 import { SkillComponent } from './skill/skill.component';
 import { SkillService } from './skill.service';
+/*import { ClientPanelComponent } from './client-panel/client-panel.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { SkillService } from './skill.service';
     ExperienceComponent,
     SelfImageComponent,
     ProjectComponent,
-    SkillComponent
+    SkillComponent,
+    /*ClientPanelComponent,
+    AdminPanelComponent*/
+    routingComponents
   ],
   imports: [
     BrowserModule,
