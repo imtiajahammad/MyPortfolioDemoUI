@@ -242,6 +242,8 @@
 
 
 
+
+
 </div>
 
 
@@ -253,16 +255,20 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<div class="sample">  
+<!--div class="sample">  
 
   <div>
     <a routerLink="/client-panel" routerLinkActive="active">client-panel</a>
-    <a routerLink="/admin-panel" routerLinkActive="active">client-panel</a>
+    <a routerLink="/admin-panel" routerLinkActive="active">admin-panel</a>
+<br>
+    <button (click)="goToPage('client-panel')">Go to client</button>
+    <button (click)="goToPage('admin-panel')">Go to admin</button>
   </div>
 
-  <button (click)="goToPage('client-panel')">Go to client</button>
-  <button (click)="goToPage('admin-panel')">Go to admin</button>
-  <!--
+
+
+
+
    <app-about></app-about>
    <app-academic></app-academic>
    <app-career-adjective></app-career-adjective>
@@ -271,8 +277,8 @@
   <app-project></app-project>
    <app-skill></app-skill>
   
-  -->
-  </div>
+ 
+  </div-->
 
 <router-outlet></router-outlet>
 
