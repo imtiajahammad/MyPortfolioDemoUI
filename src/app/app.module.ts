@@ -18,6 +18,8 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectService } from './project.service';
 import { SkillComponent } from './skill/skill.component';
 import { SkillService } from './skill.service';
+import {FormsModule} from '@angular/forms';
+import { AboutAdminComponent } from './about-admin/about-admin.component';
 /*import { ClientPanelComponent } from './client-panel/client-panel.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
 
@@ -33,12 +35,14 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
     SkillComponent,
     /*ClientPanelComponent,
     AdminPanelComponent*/
-    routingComponents
+    routingComponents,
+    AboutAdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AboutService,AcademicService,CareerAdjective,ExperienceService,SelfImageService,ProjectService,SkillService],
   bootstrap: [AppComponent]
