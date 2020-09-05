@@ -1,0 +1,45 @@
+.deletePhoneNumber{
+    color: red;
+    display: none;
+}
+.everyPhoneFromList:hover .deletePhoneNumber {
+   display:block  
+}
+
+
+
+.deleteEmail{
+    color: red;
+    display: none;
+}
+.everyEmailFromList:hover .deleteEmail {
+   display:block  
+}
+
+
+
+.deleteLanguage{
+    color: red;
+    display: none;
+}
+.everylanguageFromList:hover .deleteLanguage {
+   display:block  
+}
+
+
+.deleteBrief{
+    color: red;
+    display: none;
+}
+.everyBriefFromList:hover .deleteBrief {
+   display:block  
+}
+
+
+.deleteSocialLink{
+    color: red;
+    display: none;
+}
+.everySocialLinkFromList:hover .deleteSocialLink {
+   display:block  
+}

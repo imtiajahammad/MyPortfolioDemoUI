@@ -4,111 +4,111 @@
 <div class="container-fluid">
     <h1 >Admin Area</h1>
     <div class="alert alert-danger" >
-        
         <!--
             *ngIf='errorMsg'
 {{errorMsg}}
         -->
     </div>
-
-
     <form #adminForm="ngForm" novalidate
      >
-
      <!--
           (ngSubmit)="onSubmit()"
         *ngIf="!submitted"-->
-
         <div *ngFor="let about of aboutGetData">
-<hr/>
-about.FirstName->{{about.FirstName.Data|json}}
-<hr/>
-adminForm.form.valid->{{adminForm.form.valid}}
-<hr/>
+{{clickMessage}}
             <div class="form-group">
                 <label>First Name</label>
                 <input type="text" required class="form-control" [(ngModel)]="about.FirstName.Data" 
                 [class.is-invalid]="FirstName.invalid && FirstName.touched" name="FirstName" #FirstName="ngModel" >
                 <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">First Name is required</small>
+                <button [class.d-none]="!FirstName.dirty" [disabled]="!FirstName.dirty" class="btn btn-primary" type="submit" (click)="onClickMe()">Update</button>
             </div>
             <div class="form-group">
                 <label>Middle Name</label>
                 <input type="text" required class="form-control" [(ngModel)]="about.MiddleName.Data" 
                 [class.is-invalid]="MiddleName.invalid && MiddleName.touched" name="MiddleName" #MiddleName="ngModel" >
                 <small class="text-danger" [class.d-none]="MiddleName.valid || MiddleName.untouched">Middle Name is required</small>
+                <button [class.d-none]="!MiddleName.dirty" [disabled]="!MiddleName.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
             <div class="form-group">
                 <label>Last Name</label>
                 <input type="text" required class="form-control" [(ngModel)]="about.LastName.Data" 
                 [class.is-invalid]="LastName.invalid && LastName.touched" name="LastName" #LastName="ngModel" >
                 <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">LastName is required</small>
+                <button [class.d-none]="!LastName.dirty" [disabled]="!LastName.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-
-
-
-
-
-
-
             <div class="form-group">
                 <label>Phone numbers</label>
                 <div *ngFor="let phone of about.phoneNumbers" >
                     <!--input type="text" required class="form-control" [(ngModel)]="phone.Data"  disabled
                     name="phone"-->
+                    
+                    <div class="everyPhoneFromList">
                     +880
-                    <span  [(ngModel)]="phone.Data"  class="text-primary"  name="phone">{{phone.Data}}</span>
+                    <span  [(ngModel)]="phone.Data"  class="text-primary"  name="phone" >{{phone.Data}}</span>
+                    <a class='deletePhoneNumber' href="#">delete</a>
+                    </div>
                 </div>
             </div>
-
-
             <div class="form-group">
                 <label>emails</label>
-                <div *ngFor="let email of about.emails" >
+                <div *ngFor="let email of about.emails" class="everyEmailFromList">
                     <!--input type="text" required class="form-control" [(ngModel)]="phone.Data"  disabled
                     name="phone"-->
                     <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
+                    <a class='deleteEmail' href="#">delete</a>
                 </div>
             </div>
-
             <div class="form-group">
                 <label>languages</label>
-                <div *ngFor="let language of about.languages" >
+                <div *ngFor="let language of about.languages" class="everylanguageFromList">
                     <!--input type="text" required class="form-control" [(ngModel)]="language.Data"  disabled
                     name="language"-->
 
                     <span  [(ngModel)]="language.Data"  class="text-primary"  name="language">{{language.Data}}</span>
+                    <a class='deleteLanguage' href="#">delete</a>
                 </div>
             </div>
-
-
             <div class="form-group">
                 <label>DOB</label>
-                <input type="text" required class="form-control" [(ngModel)]="about.DOB.Data" 
-                [class.is-invalid]="DOB.invalid && DOB.touched" name="DOB" #DOB="ngModel" >
-                <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">DOB is required</small>
+                <div class="form-group">
+                    <input type="text"
+                            required
+                           class="form-control"
+                           [(ngModel)]="about.DOB.Data"
+                           [class.is-invalid]="DOB.invalid && DOB.touched"
+                           name="DOB"
+                           #DOB="ngModel"
+                           bsDatepicker
+                           >
+                    <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">DOB is required</small>
+                    <button [class.d-none]="!DOB.dirty" [disabled]="!DOB.dirty" class="btn btn-primary" type="submit">Update</button>
+                </div>
+                
             </div>
-
             <div class="form-group">
                 <label>fullAddress</label>
                 <input type="text" required class="form-control" [(ngModel)]="about.fullAddress.Data" 
                 [class.is-invalid]="fullAddress.invalid && fullAddress.touched" name="fullAddress" #fullAddress="ngModel" >
                 <small class="text-danger" [class.d-none]="fullAddress.valid || fullAddress.untouched">fullAddress is required</small>
+                <button [class.d-none]="!fullAddress.dirty" [disabled]="!fullAddress.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-
-
             <div class="form-group">
                 <label>city</label>
                 <input type="text" required class="form-control" [(ngModel)]="about.city.Data" 
                 [class.is-invalid]="city.invalid && city.touched" name="city" #city="ngModel" >
                 <small class="text-danger" [class.d-none]="city.valid || city.untouched">city is required</small>
+                <button [class.d-none]="!city.dirty" [disabled]="!city.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-
             <div class="form-group">
                 <label>brief</label>
-                <div *ngFor="let brief of about.brief" >
+                <div *ngFor="let brief of about.brief"  >
                     <!--input type="text" required class="form-control" [(ngModel)]="brief.Data"
                     name="brief"-->
-                    <span  [(ngModel)]="brief.Data"  class="text-primary"  name="brief">{{brief.Data}}</span>
+                    <div class="everyBriefFromList">
+                        <span  [(ngModel)]="brief.Data"  class="text-primary"  name="brief">{{brief.Data}}</span>
+                        <a class='deleteBrief' href="#">delete</a>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -116,12 +116,12 @@ adminForm.form.valid->{{adminForm.form.valid}}
                 <div *ngFor="let socialLink of about.socialLinks" >
                     <!--input type="text" required class="form-control" [(ngModel)]="socialLink.Title"
                     name="socialLink"-->
-                    <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
+                    <div class="everySocialLinkFromList">
+                        <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
+                        <a class='deleteSocialLink' href="#">delete</a>
+                    </div>
                 </div>
             </div>
-
-
         </div>
-        
     </form>
 </div>

@@ -17,5 +17,8 @@ export class AboutAdminComponent implements OnInit {
     this._aboutService.getAboutInfo(/*1*/)
               .subscribe(data=>this.aboutGetData=data);
   }
-
+  clickMessage = '';
+  onClickMe() {
+    this.clickMessage = 'You are my hero!';
+  }
 }
