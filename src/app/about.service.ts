@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {About} from './about';
-import { User } from './admin-panel/admin-panel.component';
+
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 @Injectable({
@@ -17,14 +17,14 @@ export class AboutService {
     return this.http.get<About[]>(this._url/*+id*/);
   }
 
-
+/*
   enroll(user:User){
     return this.http.post<any>(this._url,user)
             .pipe(catchError(this.errorHandler))
   }
-f
+
   errorHandler(error:HttpErrorResponse){
     return throwError(error);
   }
-
+*/
 }
