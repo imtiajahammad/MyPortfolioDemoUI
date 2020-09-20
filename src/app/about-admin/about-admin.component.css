@@ -1,45 +1,103 @@
-.deletePhoneNumber{
+#aboutadminbody{
+    padding-bottom: 50px;
+}
+
+
+.updateListElement,.deleteElement{
     color: red;
     display: none;
+    border:1px solid red;
+    padding: 0 5px 0 5px;
+    text-align: center;
 }
-.everyPhoneFromList:hover .deletePhoneNumber {
-   display:block  
+.updateListElement{
+    display:none;
 }
-
-
-
-.deleteEmail{
-    color: red;
-    display: none;
-}
-.everyEmailFromList:hover .deleteEmail {
-   display:block  
+.deleteElement{
+    display:none;
 }
 
 
-
-.deleteLanguage{
-    color: red;
-    display: none;
+.spanAndActionLink:hover .updateListElement{
+    display:block;  
+ }
+.spanAndActionLink:hover .deleteElement {
+    display:block  
+ }
+.spanAndActionLink{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin:5px 0 5px 0;
 }
-.everylanguageFromList:hover .deleteLanguage {
-   display:block  
+.doubleSpanAndActionLink{
+    display:flex;
+    justify-content:space-between;
+    column-gap: 20px;
+    align-items:flex-start;
+    margin:5px 0 5px 0;
+}
+.editButtons{
+    display:flex;
+}
+.spanAndActionLink span{
+    background-color: hotpink;
+}
+.spanAndActionLink a{
+    background-color: lawngreen;
+}
+.inputWithButton{
+    display:flex;
+    gap:2%;
+}
+.inputWithButton button{
+    border:2px solid gray;
+
+}
+.btn{
+
+}
+#formGroupWithInput{
+}
+#formGroupWithList{
+
+}
+.everySpanAndActionLink{
+}
+.labelAndButton{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+.labelForLabelAndButtons{
+    margin:0;
+    padding:1px;
+    font-size: 16px;
+    border-radius: 5px;
+
+}
+.buttonForLabelAndButtons{
+    border:1px solid gray;
+    margin:0;
+    padding:1px;
 }
 
 
-.deleteBrief{
-    color: red;
-    display: none;
-}
-.everyBriefFromList:hover .deleteBrief {
-   display:block  
-}
+.addInputButton{
+    display:flex;
+    justify-content:space-between;
+    gap:1%;
 
-
-.deleteSocialLink{
-    color: red;
-    display: none;
 }
-.everySocialLinkFromList:hover .deleteSocialLink {
-   display:block  
+.addDoubleInputButton{
+    display:flex;
+    justify-content:space-between;
+    flex-grow:1;
+    gap:2%;
+
+}
+.inputButtonDiv{
+    display:flex;
+    flex-grow:0;
+    justify-content:flex-end;
 }

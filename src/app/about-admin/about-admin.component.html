@@ -1,7 +1,7 @@
 
 
 
-<div class="container-fluid">
+<div id="aboutadminbody" class="container-fluid">
     <h1 >Admin Area</h1>
     <div class="alert alert-danger" >
         <!--
@@ -16,62 +16,114 @@
         *ngIf="!submitted"-->
         <div *ngFor="let about of aboutGetData">
 {{clickMessage}}
-            <div class="form-group">
-                <label>First Name</label>
+            <div class="form-group" id="formGroupWithInput">
+                <label>First Name</label>                
+                <div class="inputWithButton">
                 <input type="text" required class="form-control" [(ngModel)]="about.FirstName.Data" 
-                [class.is-invalid]="FirstName.invalid && FirstName.touched" name="FirstName" #FirstName="ngModel" >
+                [class.is-invalid]="FirstName.invalid && FirstName.touched" name="FirstName" #FirstName="ngModel" >                
+                <button [class.d-none]="!FirstName.dirty" [disabled]="!FirstName.dirty" class="btn" type="submit" (click)="onClickMe()">Update</button>
+                </div>
                 <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">First Name is required</small>
-                <button [class.d-none]="!FirstName.dirty" [disabled]="!FirstName.dirty" class="btn btn-primary" type="submit" (click)="onClickMe()">Update</button>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="formGroupWithInput">
                 <label>Middle Name</label>
-                <input type="text" required class="form-control" [(ngModel)]="about.MiddleName.Data" 
-                [class.is-invalid]="MiddleName.invalid && MiddleName.touched" name="MiddleName" #MiddleName="ngModel" >
-                <small class="text-danger" [class.d-none]="MiddleName.valid || MiddleName.untouched">Middle Name is required</small>
-                <button [class.d-none]="!MiddleName.dirty" [disabled]="!MiddleName.dirty" class="btn btn-primary" type="submit">Update</button>
+                <div class="inputWithButton">
+                    <input type="text" required class="form-control" [(ngModel)]="about.MiddleName.Data" 
+                    [class.is-invalid]="MiddleName.invalid && MiddleName.touched" name="MiddleName" #MiddleName="ngModel" >
+                    <button [class.d-none]="!MiddleName.dirty" [disabled]="!MiddleName.dirty" class="btn" type="submit">Update</button>
+                 </div>
+               <small class="text-danger" [class.d-none]="MiddleName.valid || MiddleName.untouched">Middle Name is required</small>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" id="formGroupWithInput">
                 <label>Last Name</label>
-                <input type="text" required class="form-control" [(ngModel)]="about.LastName.Data" 
+                <div class="inputWithButton">
+                    <input type="text" required class="form-control" [(ngModel)]="about.LastName.Data" 
                 [class.is-invalid]="LastName.invalid && LastName.touched" name="LastName" #LastName="ngModel" >
+                <button [class.d-none]="!LastName.dirty" [disabled]="!LastName.dirty" class="btn" type="submit">Update</button>           
+                </div>
                 <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">LastName is required</small>
-                <button [class.d-none]="!LastName.dirty" [disabled]="!LastName.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-            <div class="form-group">
-                <label>Phone numbers</label>
+            
+            
+
+            <div class="form-group" id="formGroupWithList">
+                <div class="labelAndButton">
+                    <label class="labelForLabelAndButtons">Phone numbers</label>
+                    <button  class="btn buttonForLabelAndButtons" (click)="addPhoneNumber()">Add New Phone Number</button>
+                </div>
                 <div *ngFor="let phone of about.phoneNumbers" >
-                    <!--input type="text" required class="form-control" [(ngModel)]="phone.Data"  disabled
-                    name="phone"-->
-                    
-                    <div class="everyPhoneFromList">
-                    +880
-                    <span  [(ngModel)]="phone.Data"  class="text-primary"  name="phone" >{{phone.Data}}</span>
-                    <a class='deletePhoneNumber' href="#">delete</a>
+                    <div class="spanAndActionLink">
+                    <span  [(ngModel)]="phone.Data" class="text-primary" name="phone" > 
+                        +880  {{phone.Data}}
+                    </span>
+                    <a class='deleteElement' (click)="delete_SmallTextListDataModel(phone.Id,phone.ParentId)">Delete</a>
+                    <!--div class="editButtons">
+                        <a class="updateListElement" href="#">Update</a>
+                        <a class='deleteElement' href="#">Delete</a>
+                    </div-->
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>emails</label>
-                <div *ngFor="let email of about.emails" class="everyEmailFromList">
-                    <!--input type="text" required class="form-control" [(ngModel)]="phone.Data"  disabled
-                    name="phone"-->
-                    <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
-                    <a class='deleteEmail' href="#">delete</a>
+                <div class="addInputButton" *ngIf="showAddPhonePortion">
+                    <input type="tel"  class="form-control" #newPhone >
+                    <div class="inputButtonDiv">
+                        
+                        <!--input value="newPhone" (input)="newPhone=$event.target.value"-->
+                        <button class="" (click)="AddNewPhoneNumber(newPhone.value)" >Add</button>
+                        <button class="" (click)="hideAddPhonePortion()">Cancel</button>
+                    </div>         
                 </div>
             </div>
-            <div class="form-group">
-                <label>languages</label>
-                <div *ngFor="let language of about.languages" class="everylanguageFromList">
-                    <!--input type="text" required class="form-control" [(ngModel)]="language.Data"  disabled
-                    name="language"-->
 
-                    <span  [(ngModel)]="language.Data"  class="text-primary"  name="language">{{language.Data}}</span>
-                    <a class='deleteLanguage' href="#">delete</a>
+            <div class="form-group" id="formGroupWithList">
+                <div class="labelAndButton">
+                    <label class="labelForLabelAndButtons">emails</label>
+                    <button  class="btn buttonForLabelAndButtons" (click)="addEmailNumber()">Add New Email</button>
+                </div>
+                <!--div *ngFor="let email of about.emails" class="spanAndActionLink">
+                    <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
+                    <a class='deleteElement' (click)="delete_SmallTextListDataModel(email.Id,email.ParentId)">Delete</a>
+                </div-->
+                <div *ngFor="let email of about.emails" >
+                    <div class="spanAndActionLink">
+                    <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
+                    <a class='deleteElement' (click)="delete_SmallTextListDataModel(email.Id,email.ParentId)">Delete</a>
+                    </div>
+                </div>
+                <div class="addInputButton" *ngIf="showAddEmailPortion">
+                    <input type="email"  class="form-control" #newEmail>
+                    <div class="inputButtonDiv">
+                        <button class="" (click)="AddNewEmail(newEmail.value)" >Add</button>
+                        <button class="" (click)="hideAddEmailPortion()">Cancel</button>
+                    </div>         
                 </div>
             </div>
-            <div class="form-group">
-                <label>DOB</label>
-                <div class="form-group">
+            <div class="form-group" id="formGroupWithList">
+                <div class="labelAndButton">
+                    <label class="labelForLabelAndButtons">Languages</label>
+                    <button  class="btn buttonForLabelAndButtons" (click)="addLanguageNumber()">Add New Language</button>
+                </div>
+                <!--div *ngFor="let language of about.languages" class="spanAndActionLink">
+                    <span  [(ngModel)]="language.Data"  class="text-primary"  name="language">{{language.Data}}</span>
+                    <a class='deleteElement' (click)="delete_SmallTextListDataModel(language.Id,language.ParentId)">Delete</a>
+                </div-->
+                <div *ngFor="let language of about.languages" >
+                    <div class="spanAndActionLink">
+                    <span  [(ngModel)]="language.Data"  class="text-primary"  name="language">{{language.Data}}</span>
+                    <a class='deleteElement' (click)="delete_SmallTextListDataModel(language.Id,language.ParentId)">Delete</a>
+                    </div>
+                </div>
+                <div class="addInputButton" *ngIf="showAddLanguagePortion">
+                    <input type="text"  class="form-control" #newLanguage>
+                    <div class="inputButtonDiv">
+                        <button class="" (click)="AddNewLanguage(newLanguage.value)" >Add</button>
+                        <button class="" (click)="hideAddLanguagePortion()">Cancel</button>
+                    </div>         
+                </div>
+            </div>
+            <div class="form-group" id="formGroupWithInput">
+                    <label>DOB</label>
+                <div class="inputWithButton">
                     <input type="text"
                             required
                            class="form-control"
@@ -81,46 +133,97 @@
                            #DOB="ngModel"
                            bsDatepicker
                            >
-                    <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">DOB is required</small>
-                    <button [class.d-none]="!DOB.dirty" [disabled]="!DOB.dirty" class="btn btn-primary" type="submit">Update</button>
+                           <button [class.d-none]="!DOB.dirty" [disabled]="!DOB.dirty" class="btn" type="submit">Update</button>
                 </div>
+                    
+                    <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">DOB is required</small>                    
                 
             </div>
-            <div class="form-group">
+            <div class="form-group" id="formGroupWithInput">
                 <label>fullAddress</label>
-                <input type="text" required class="form-control" [(ngModel)]="about.fullAddress.Data" 
+                <div class="inputWithButton">
+                    <input type="text" required class="form-control" [(ngModel)]="about.fullAddress.Data" 
                 [class.is-invalid]="fullAddress.invalid && fullAddress.touched" name="fullAddress" #fullAddress="ngModel" >
+                <button [class.d-none]="!fullAddress.dirty" [disabled]="!fullAddress.dirty" class="btn" type="submit">Update</button>           
+                </div>
                 <small class="text-danger" [class.d-none]="fullAddress.valid || fullAddress.untouched">fullAddress is required</small>
-                <button [class.d-none]="!fullAddress.dirty" [disabled]="!fullAddress.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="formGroupWithInput">
                 <label>city</label>
-                <input type="text" required class="form-control" [(ngModel)]="about.city.Data" 
+                <div class="inputWithButton">
+                    <input type="text" required class="form-control" [(ngModel)]="about.city.Data" 
                 [class.is-invalid]="city.invalid && city.touched" name="city" #city="ngModel" >
+                <button [class.d-none]="!city.dirty" [disabled]="!city.dirty" class="btn" type="submit">Update</button>            
+                </div>
                 <small class="text-danger" [class.d-none]="city.valid || city.untouched">city is required</small>
-                <button [class.d-none]="!city.dirty" [disabled]="!city.dirty" class="btn btn-primary" type="submit">Update</button>
             </div>
-            <div class="form-group">
-                <label>brief</label>
-                <div *ngFor="let brief of about.brief"  >
-                    <!--input type="text" required class="form-control" [(ngModel)]="brief.Data"
-                    name="brief"-->
-                    <div class="everyBriefFromList">
+            <div class="form-group" id="formGroupWithList">
+                <div class="labelAndButton">
+                    <label class="labelForLabelAndButtons">brief</label>
+                    <button  class="btn buttonForLabelAndButtons" (click)="addBriefNumber()">Add New Brief</button>
+                </div>
+                <!--div *ngFor="let brief of about.brief"  >
+                    <div class="spanAndActionLink">
                         <span  [(ngModel)]="brief.Data"  class="text-primary"  name="brief">{{brief.Data}}</span>
-                        <a class='deleteBrief' href="#">delete</a>
+                        <a class='deleteElement' (click)="delete_LargeTextListDataModel(brief.Id,brief.ParentId)">Delete</a>
                     </div>
+                </div-->
+                <div *ngFor="let brief of about.brief" >
+                    <div class="spanAndActionLink">
+                    <span  [(ngModel)]="brief.Data"  class="text-primary"  name="brief">{{brief.Data}}</span>
+                    <a class='deleteElement' (click)="delete_LargeTextListDataModel(brief.Id,brief.ParentId)">Delete</a>
+                    </div>
+                </div>
+                <div class="addInputButton" *ngIf="showAddBriefPortion">
+                    <input type="text"  class="form-control" #newBrief>
+                    <div class="inputButtonDiv">
+                        <button class="" (click)="AddNewBrief(newBrief.value)" >Add</button>
+                        <button class="" (click)="hideAddBriefPortion()">Cancel</button>
+                    </div>         
                 </div>
             </div>
-            <div class="form-group">
-                <label>brief</label>
+            <div class="form-group" id="formGroupWithList">
+                <div class="labelAndButton">
+                    <label class="labelForLabelAndButtons">socials</label>
+                    <button  class="btn buttonForLabelAndButtons" (click)="addSocialNumber()">Add New Social link</button>
+                </div>
+                <!--div *ngFor="let socialLink of about.socialLinks" >
+                    <div class="spanAndActionLink">
+                        <a href="">
+                            <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
+                        </a>
+                        <a class='deleteElement' (click)="delete_OnlineLinkDataModel(socialLink.Id,socialLink.ParentId)" >Delete</a>
+                    </div>
+                </div-->
                 <div *ngFor="let socialLink of about.socialLinks" >
-                    <!--input type="text" required class="form-control" [(ngModel)]="socialLink.Title"
-                    name="socialLink"-->
-                    <div class="everySocialLinkFromList">
+                    <!--div class="spanAndActionLink">
+                        <div class="doubleSpanAndActionLink">
                         <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
-                        <a class='deleteSocialLink' href="#">delete</a>
+                        <a href="">
+                        <span  [(ngModel)]="socialLink.Link"  class="text-primary"  name="socialLink">{{socialLink.Link}}</span>
+                        </a>
+                     </div-->
+                     <div class="spanAndActionLink">
+                        <div class="doubleSpanAndActionLink">
+                        
+                        <a href="{{socialLink.Link}}">
+                        <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
+                        </a>
+                     </div>
+                    <a class='deleteElement' (click)="delete_OnlineLinkDataModel(socialLink.Id,socialLink.ParentId)">Delete</a>
                     </div>
                 </div>
+                <div class="addInputButton" *ngIf="showAddSocialPortion">
+                    <div class="addDoubleInputButton">
+                    <input type="text"  class="form-control" #newSocialTitle placeholder="Enter title">
+                    <input type="text"  class="form-control" #newSocialLink placeholder="Enter link">
+                    </div>
+                    <div class="inputButtonDiv">
+                        <button class="" (click)="AddNewSocial(newSocialTitle.value,newSocialLink.value)" >Add</button>
+                        <button class="" (click)="hideAddSocialPortion()">Cancel</button>
+                    </div>         
+                </div>
+
             </div>
         </div>
     </form>
