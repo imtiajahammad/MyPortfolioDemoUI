@@ -9,19 +9,19 @@
 {{errorMsg}}
         -->
     </div>
-    <form #adminForm="ngForm" novalidate
+    <form #adminForm="ngForm"  
      >
-     <!--
+     <!--novalidate
           (ngSubmit)="onSubmit()"
         *ngIf="!submitted"-->
         <div *ngFor="let about of aboutGetData">
 {{clickMessage}}
             <div class="form-group" id="formGroupWithInput">
-                <label>First Name</label>                
+                <label>First Name</label>               
                 <div class="inputWithButton">
                 <input type="text" required class="form-control" [(ngModel)]="about.FirstName.Data" 
-                [class.is-invalid]="FirstName.invalid && FirstName.touched" name="FirstName" #FirstName="ngModel" >                
-                <button [class.d-none]="!FirstName.dirty" [disabled]="!FirstName.dirty" class="btn" type="submit" (click)="onClickMe()">Update</button>
+                [class.is-invalid]="FirstName.invalid && FirstName.touched" name="FirstName" #FirstName="ngModel" > 
+                <button [class.d-none]="!FirstName.dirty" [disabled]="!FirstName.dirty || FirstName.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>
                 </div>
                 <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">First Name is required</small>
             </div>
@@ -30,7 +30,7 @@
                 <div class="inputWithButton">
                     <input type="text" required class="form-control" [(ngModel)]="about.MiddleName.Data" 
                     [class.is-invalid]="MiddleName.invalid && MiddleName.touched" name="MiddleName" #MiddleName="ngModel" >
-                    <button [class.d-none]="!MiddleName.dirty" [disabled]="!MiddleName.dirty" class="btn" type="submit">Update</button>
+                    <button [class.d-none]="!MiddleName.dirty" [disabled]="!MiddleName.dirty || MiddleName.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>
                  </div>
                <small class="text-danger" [class.d-none]="MiddleName.valid || MiddleName.untouched">Middle Name is required</small>
             </div>
@@ -40,7 +40,7 @@
                 <div class="inputWithButton">
                     <input type="text" required class="form-control" [(ngModel)]="about.LastName.Data" 
                 [class.is-invalid]="LastName.invalid && LastName.touched" name="LastName" #LastName="ngModel" >
-                <button [class.d-none]="!LastName.dirty" [disabled]="!LastName.dirty" class="btn" type="submit">Update</button>           
+                <button [class.d-none]="!LastName.dirty" [disabled]="!LastName.dirty || MiddleName.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>           
                 </div>
                 <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">LastName is required</small>
             </div>
@@ -64,15 +64,22 @@
                     </div-->
                     </div>
                 </div>
-                <div class="addInputButton" *ngIf="showAddPhonePortion">
-                    <input type="tel"  class="form-control" #newPhone >
+                
+                <div  *ngIf="showAddPhonePortion">
+                    <div class="addInputButton">
+                    <input type="tel"  class="form-control" #newPhone="ngModel"  name="newPhone" ngModel
+                     required [class.is-invalid]="newPhone.invalid && newPhone.touched" pattern="^\d{11}$">
+                   <!-- {{newPhone.value}}  {{newPhone.valid}}-->
                     <div class="inputButtonDiv">
-                        
                         <!--input value="newPhone" (input)="newPhone=$event.target.value"-->
-                        <button class="" (click)="AddNewPhoneNumber(newPhone.value)" >Add</button>
+                        <button class="" [disabled]="newPhone.pristine || newPhone.invalid" (click)="AddNewPhoneNumber(newPhone.value)" >Add</button>
                         <button class="" (click)="hideAddPhonePortion()">Cancel</button>
-                    </div>         
+                    </div>  
+                   
                 </div>
+                <small class="text-danger" [class.d-none]="newPhone.valid || newPhone.untouched">newPhone is required with 11 digits</small>       
+                </div>
+                
             </div>
 
             <div class="form-group" id="formGroupWithList">
@@ -90,12 +97,17 @@
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(email.Id,email.ParentId)">Delete</a>
                     </div>
                 </div>
-                <div class="addInputButton" *ngIf="showAddEmailPortion">
-                    <input type="email"  class="form-control" #newEmail>
+                <div  *ngIf="showAddEmailPortion">
+                    <div class="addInputButton">
+                    <input type="email"  class="form-control" #newEmail="ngModel" ngModel name="newEmail"
+                     required [class.is-invalid]="newEmail.invalid && newEmail.touched" email>
                     <div class="inputButtonDiv">
-                        <button class="" (click)="AddNewEmail(newEmail.value)" >Add</button>
+                        <button class="" [disabled]="newEmail.pristine || newEmail.invalid" (click)="AddNewEmail(newEmail.value)" >Add</button>
                         <button class="" (click)="hideAddEmailPortion()">Cancel</button>
+
                     </div>         
+                </div>
+                <small class="text-danger" [class.d-none]="newEmail.valid || newEmail.untouched">newEmail is required </small>       
                 </div>
             </div>
             <div class="form-group" id="formGroupWithList">
@@ -113,12 +125,15 @@
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(language.Id,language.ParentId)">Delete</a>
                     </div>
                 </div>
-                <div class="addInputButton" *ngIf="showAddLanguagePortion">
-                    <input type="text"  class="form-control" #newLanguage>
+                <div  *ngIf="showAddLanguagePortion">
+                    <div class="addInputButton">
+                    <input type="text"  class="form-control" #newLanguage="ngModel" name="newLanguage" ngModel required [class.is-invalid]="newLanguage.invalid && newLanguage.touched">
                     <div class="inputButtonDiv">
-                        <button class="" (click)="AddNewLanguage(newLanguage.value)" >Add</button>
+                        <button class="" (click)="AddNewLanguage(newLanguage.value)"  [disabled]="newLanguage.pristine || newLanguage.invalid">Add</button>
                         <button class="" (click)="hideAddLanguagePortion()">Cancel</button>
                     </div>         
+                </div>
+                <small class="text-danger" [class.d-none]="newLanguage.valid || newLanguage.untouched">newLanguage is required </small>       
                 </div>
             </div>
             <div class="form-group" id="formGroupWithInput">
@@ -133,7 +148,7 @@
                            #DOB="ngModel"
                            bsDatepicker
                            >
-                           <button [class.d-none]="!DOB.dirty" [disabled]="!DOB.dirty" class="btn" type="submit">Update</button>
+                           <button [class.d-none]="!DOB.dirty" [disabled]="!DOB.dirty || DOB.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>
                 </div>
                     
                     <small class="text-danger" [class.d-none]="DOB.valid || DOB.untouched">DOB is required</small>                    
@@ -144,7 +159,7 @@
                 <div class="inputWithButton">
                     <input type="text" required class="form-control" [(ngModel)]="about.fullAddress.Data" 
                 [class.is-invalid]="fullAddress.invalid && fullAddress.touched" name="fullAddress" #fullAddress="ngModel" >
-                <button [class.d-none]="!fullAddress.dirty" [disabled]="!fullAddress.dirty" class="btn" type="submit">Update</button>           
+                <button [class.d-none]="!fullAddress.dirty" [disabled]="!fullAddress.dirty || fullAddress.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>           
                 </div>
                 <small class="text-danger" [class.d-none]="fullAddress.valid || fullAddress.untouched">fullAddress is required</small>
             </div>
@@ -153,7 +168,7 @@
                 <div class="inputWithButton">
                     <input type="text" required class="form-control" [(ngModel)]="about.city.Data" 
                 [class.is-invalid]="city.invalid && city.touched" name="city" #city="ngModel" >
-                <button [class.d-none]="!city.dirty" [disabled]="!city.dirty" class="btn" type="submit">Update</button>            
+                <button [class.d-none]="!city.dirty" [disabled]="!city.dirty || city.invalid" class="btn" type="submit" (click)="onClickMe()">Update</button>            
                 </div>
                 <small class="text-danger" [class.d-none]="city.valid || city.untouched">city is required</small>
             </div>
@@ -174,12 +189,15 @@
                     <a class='deleteElement' (click)="delete_LargeTextListDataModel(brief.Id,brief.ParentId)">Delete</a>
                     </div>
                 </div>
-                <div class="addInputButton" *ngIf="showAddBriefPortion">
-                    <input type="text"  class="form-control" #newBrief>
+                <div  *ngIf="showAddBriefPortion">
+                    <div class="addInputButton">
+                    <input type="text"  class="form-control" #newBrief="ngModel" ngModel [class.is-invalid]="newBrief.invalid && newBrief.touched" required name="newBrief" >
                     <div class="inputButtonDiv">
-                        <button class="" (click)="AddNewBrief(newBrief.value)" >Add</button>
+                        <button class="" (click)="AddNewBrief(newBrief.value)" [disabled]="newBrief.pristine || newBrief.invalid" >Add</button>
                         <button class="" (click)="hideAddBriefPortion()">Cancel</button>
                     </div>         
+                </div>
+                <small class="text-danger" [class.d-none]="newBrief.valid || newBrief.untouched">newBrief is required </small>       
                 </div>
             </div>
             <div class="form-group" id="formGroupWithList">
@@ -213,15 +231,22 @@
                     <a class='deleteElement' (click)="delete_OnlineLinkDataModel(socialLink.Id,socialLink.ParentId)">Delete</a>
                     </div>
                 </div>
-                <div class="addInputButton" *ngIf="showAddSocialPortion">
+                <div  *ngIf="showAddSocialPortion">
+                    <div class="addInputButton">
                     <div class="addDoubleInputButton">
-                    <input type="text"  class="form-control" #newSocialTitle placeholder="Enter title">
-                    <input type="text"  class="form-control" #newSocialLink placeholder="Enter link">
+                    <input type="text"  class="form-control" #newSocialTitle="ngModel" name="newSocialTitle" ngModel placeholder="Enter title" required [class.is-invalid]="newSocialTitle.invalid && newSocialTitle.touched">
+                    <input type="text"  class="form-control" #newSocialLink="ngModel" name="newSocialLink" ngModel placeholder="Enter link" required [class.is-invalid]="newSocialLink.invalid && newSocialLink.touched">
                     </div>
                     <div class="inputButtonDiv">
-                        <button class="" (click)="AddNewSocial(newSocialTitle.value,newSocialLink.value)" >Add</button>
+                        <button class="" (click)="AddNewSocial(newSocialTitle.value,newSocialLink.value)" [disabled]="newSocialTitle.pristine || newSocialTitle.invalid || newSocialLink.pristine || newSocialLink.invalid"  >Add</button>
                         <button class="" (click)="hideAddSocialPortion()">Cancel</button>
                     </div>         
+                </div>
+                <!--div class="smallWornings">
+                <small class="text-danger" [class.d-none]="(newSocialTitle.valid || newSocialTitle.untouched) && ( newSocialLink.valid || newSocialLink.untouched)" >newSocialTitle is required <br></small>   
+                <!small class="text-danger" [class.d-none]=" newSocialLink.valid || newSocialLink.untouched">newSocialLink is required </small>       
+                </div-->
+                <small class="text-danger" [class.d-none]="(newSocialTitle.valid || newSocialTitle.untouched) && ( newSocialLink.valid || newSocialLink.untouched)" >newSocial Title and Link both are required <br></small>   
                 </div>
 
             </div>

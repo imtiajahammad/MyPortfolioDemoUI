@@ -101,3 +101,11 @@
     flex-grow:0;
     justify-content:flex-end;
 }
+.addInputButton small{
+    display:block;
+}
+
+.smallWornings{
+    display:flex;
+    gap:2%;
+}
