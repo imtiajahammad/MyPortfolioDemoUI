@@ -14,9 +14,12 @@ export class AboutService {
 
   private _url:string="http://localhost:57260/api/about/1";//1";
   getAboutInfo(/*id:number*/){
-    return this.http.get<About[]>(this._url/*+id*/);
+    return this.http.get<About[]>(this._url/*+id*/)
+                  .pipe(catchError(this.errorHandler));
   }
-
+errorHandler(error:HttpErrorResponse){
+  return throwError(error);
+}
 /*
   enroll(user:User){
     return this.http.post<any>(this._url,user)

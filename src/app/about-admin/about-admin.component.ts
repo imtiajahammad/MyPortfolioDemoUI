@@ -9,7 +9,7 @@ import { AboutService } from '../about.service';
 export class AboutAdminComponent implements OnInit {
 
   constructor(private _aboutService:AboutService) { }
-
+  public serviceErrorMsg="";
   public aboutGetData=[];
   public newPhone="new phone";
   topics=['English','Bangla','Vue'];
@@ -20,7 +20,9 @@ export class AboutAdminComponent implements OnInit {
   public showAddSocialPortion=false;
   ngOnInit(): void {
     this._aboutService.getAboutInfo(/*1*/)
-              .subscribe(data=>this.aboutGetData=data);
+              .subscribe(
+                data=>this.aboutGetData=data,
+                error => this.serviceErrorMsg=error.statusText);
   }
   clickMessage = '';
   onClickMe() {

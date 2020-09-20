@@ -3,14 +3,10 @@
 
 <div id="aboutadminbody" class="container-fluid">
     <h1 >Admin Area</h1>
-    <div class="alert alert-danger" >
-        <!--
-            *ngIf='errorMsg'
-{{errorMsg}}
-        -->
+    <div class="alert alert-danger"  *ngIf='serviceErrorMsg'>
+        {{serviceErrorMsg}}
     </div>
-    <form #adminForm="ngForm"  
-     >
+    <form #adminForm="ngForm">
      <!--novalidate
           (ngSubmit)="onSubmit()"
         *ngIf="!submitted"-->
