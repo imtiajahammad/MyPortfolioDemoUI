@@ -18,10 +18,11 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectService } from './project.service';
 import { SkillComponent } from './skill/skill.component';
 import { SkillService } from './skill.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AboutAdminComponent } from './about-admin/about-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AcademicAdminComponent } from './academic-admin/academic-admin.component';
 /*import { ClientPanelComponent } from './client-panel/client-panel.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
 
@@ -38,7 +39,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
     /*ClientPanelComponent,
     AdminPanelComponent*/
     routingComponents,
-    AboutAdminComponent
+    AboutAdminComponent,
+    AcademicAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,9 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';*/
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule
+
   ],
   providers: [AboutService,AcademicService,CareerAdjective,ExperienceService,SelfImageService,ProjectService,SkillService],
   bootstrap: [AppComponent]
