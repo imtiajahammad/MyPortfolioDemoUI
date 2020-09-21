@@ -6,10 +6,11 @@
     <div class="alert alert-danger"  *ngIf='serviceErrorMsg'>
         {{serviceErrorMsg}}
     </div>
-    <form #adminForm="ngForm">
+    <form #adminForm="ngForm" (ngSubmit)="onClickMe()">
      <!--novalidate
           (ngSubmit)="onSubmit()"
         *ngIf="!submitted"-->
+        {{adminForm.value|json}}<hr>
         <div *ngFor="let about of aboutGetData">
 {{clickMessage}}
             <div class="form-group" id="formGroupWithInput">
@@ -41,8 +42,6 @@
                 <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">LastName is required</small>
             </div>
             
-            
-
             <div class="form-group" id="formGroupWithList">
                 <div class="labelAndButton">
                     <label class="labelForLabelAndButtons">Phone numbers</label>
@@ -50,7 +49,8 @@
                 </div>
                 <div *ngFor="let phone of about.phoneNumbers" >
                     <div class="spanAndActionLink">
-                    <span  [(ngModel)]="phone.Data" class="text-primary" name="phone" > 
+                    <span   class="text-primary"   >
+                        <!-- [(ngModel)]="phone.Data"  name="phone" name="phone-{{phone.Id}}"  [(ngModel)]="phone.Data"  removed from span above--> 
                         +880  {{phone.Data}}
                     </span>
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(phone.Id,phone.ParentId)">Delete</a>
@@ -78,7 +78,7 @@
                 
             </div>
 
-            <div class="form-group" id="formGroupWithList">
+            <div class="form-group00" id="formGroupWithList">
                 <div class="labelAndButton">
                     <label class="labelForLabelAndButtons">emails</label>
                     <button  class="btn buttonForLabelAndButtons" (click)="addEmailNumber()">Add New Email</button>
@@ -87,14 +87,18 @@
                     <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(email.Id,email.ParentId)">Delete</a>
                 </div-->
-                <div *ngFor="let email of about.emails" >
-                    <div class="spanAndActionLink">
-                    <span  [(ngModel)]="email.Data"  class="text-primary"  name="email">{{email.Data}}</span>
+                <div ngModelGroup="emailList" *ngFor="let email of about.emails" >
+                    <div class="spanAndActionLink form-group">
+                        <span   class="text-primary"  >{{email.Data}}</span>
+                        <!--   [(ngModel)]="email.data" name="email-{{email.Id}}"   removed from above span-->
+                    
+                        <!--input type="text" disabled class="form-control" [(ngModel)]="email.Data" name="email-{{email.Data}}"-->
+                 
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(email.Id,email.ParentId)">Delete</a>
                     </div>
                 </div>
-                <div  *ngIf="showAddEmailPortion">
-                    <div class="addInputButton">
+                <div *ngIf="showAddEmailPortion">
+                    <div class="addInputButton ">
                     <input type="email"  class="form-control" #newEmail="ngModel" ngModel name="newEmail"
                      required [class.is-invalid]="newEmail.invalid && newEmail.touched" email>
                     <div class="inputButtonDiv">
@@ -117,7 +121,8 @@
                 </div-->
                 <div *ngFor="let language of about.languages" >
                     <div class="spanAndActionLink">
-                    <span  [(ngModel)]="language.Data"  class="text-primary"  name="language">{{language.Data}}</span>
+                    <span   class="text-primary" >{{language.Data}}</span>
+                    <!-- [(ngModel)]="language.Data"  name="language"  removed from span above-->
                     <a class='deleteElement' (click)="delete_SmallTextListDataModel(language.Id,language.ParentId)">Delete</a>
                     </div>
                 </div>
@@ -181,7 +186,8 @@
                 </div-->
                 <div *ngFor="let brief of about.brief" >
                     <div class="spanAndActionLink">
-                    <span  [(ngModel)]="brief.Data"  class="text-primary"  name="brief">{{brief.Data}}</span>
+                    <span    class="text-primary"  >{{brief.Data}}</span>
+                    <!-- [(ngModel)]="brief.Data" name="brief"  removed from span above-->
                     <a class='deleteElement' (click)="delete_LargeTextListDataModel(brief.Id,brief.ParentId)">Delete</a>
                     </div>
                 </div>
@@ -221,7 +227,8 @@
                         <div class="doubleSpanAndActionLink">
                         
                         <a href="{{socialLink.Link}}">
-                        <span  [(ngModel)]="socialLink.Title"  class="text-primary"  name="socialLink">{{socialLink.Title}}</span>
+                        <span    class="text-primary"  >{{socialLink.Title}}</span>
+                        <!-- [(ngModel)]="socialLink.Title" name="socialLink" removed from span above-->
                         </a>
                      </div>
                     <a class='deleteElement' (click)="delete_OnlineLinkDataModel(socialLink.Id,socialLink.ParentId)">Delete</a>
