@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { /*FormControl, FormGroup*/FormBuilder } from '@angular/forms';
+import { /*FormControl, FormGroup*/AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-academic-admin',
@@ -8,10 +8,31 @@ import { /*FormControl, FormGroup*/FormBuilder } from '@angular/forms';
 })
 export class AcademicAdminComponent implements OnInit {
 
+  get userName(){
+    return this.registrationForm.get('userName');
+  }
+
+  
   constructor( private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
+    forbiddenNameValidator(control:AbstractControl):
+    {[key:string]:any} | null {  
+    const forbidden=/admin/.test(control.value);
+    return forbidden ? {'forbiddenName': 
+    {value:control.value}}:null;
+  };
+    forbiddenNameValidator2(forbiddenName: RegExp):
+    ValidatorFn{
+    return (control:AbstractControl):
+    {[key:string]:any} | null =>{  
+    const forbidden=forbiddenName.test(control.value);
+    return forbidden ? {'forbiddenName': 
+    {value:control.value}}:null;
+  };
+    }
 
 /*
   registrationForm=new FormGroup({
@@ -25,8 +46,8 @@ export class AcademicAdminComponent implements OnInit {
     })
   });
 */
-registrationForm=this.formBuilder.group({
-  userName:['Vishwas'],
+  registrationForm=this.formBuilder.group({
+  userName:['', [Validators.required,Validators.minLength(3),this.forbiddenNameValidator,this.forbiddenNameValidator2(/password/) ]],
   password:[''],
   confirmPassword:[''],
   address: this.formBuilder.group({
