@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { /*FormControl, FormGroup*/AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { /*FormControl, FormGroup*/AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-academic-admin',
@@ -11,11 +11,54 @@ export class AcademicAdminComponent implements OnInit {
   get userName(){
     return this.registrationForm.get('userName');
   }
+  get email(){
+    return this.registrationForm.get('email');
+  }
+  get alternateEmails(){
+    return this.registrationForm.get('alternateEmails') as FormArray ;
+  }
 
+  addAlternateEmails(){
+    this.alternateEmails.push(this.formBuilder.control(''));
+  }
   
   constructor( private formBuilder: FormBuilder) { }
 
+  registrationForm: FormGroup;
   ngOnInit(): void {
+
+
+
+
+    this.registrationForm=this.formBuilder.group({
+      userName:['', [Validators.required,Validators.minLength(3),this.forbiddenNameValidator,this.forbiddenNameValidator2(/password/) ]],
+      password:[''],
+      email:[''],
+      subscribe:[false],
+      confirmPassword:[''],
+      address: this.formBuilder.group({
+        city:[''],
+        state:[''],
+        postalCode:['']
+      }),
+      alternateEmails:this.formBuilder.array([])
+    },{validator:this.PasswordValidator});
+
+
+    this.registrationForm.get('subscribe').valueChanges
+      .subscribe(checkedValue=>{
+        const email=this.registrationForm.get('email');
+        if(checkedValue){
+            email.setValidators(Validators.required);
+        }
+        else{
+          email.clearValidators();
+        }
+        email.updateValueAndValidity();
+      });
+
+
+
   }
 
     forbiddenNameValidator(control:AbstractControl):
@@ -31,8 +74,17 @@ export class AcademicAdminComponent implements OnInit {
     const forbidden=forbiddenName.test(control.value);
     return forbidden ? {'forbiddenName': 
     {value:control.value}}:null;
-  };
-    }
+  }};
+  PasswordValidator(control:AbstractControl):
+  {[key:string]:any} | null {  
+  const password=control.get('password');
+  const confirmPassword=control.get('confirmPassword');
+  if(password.pristine || confirmPassword.pristine){
+    return null;
+  }
+  return password && confirmPassword && password.value != confirmPassword.value ? {'misMatch':  true}:null;
+};
+
 
 /*
   registrationForm=new FormGroup({
@@ -46,16 +98,7 @@ export class AcademicAdminComponent implements OnInit {
     })
   });
 */
-  registrationForm=this.formBuilder.group({
-  userName:['', [Validators.required,Validators.minLength(3),this.forbiddenNameValidator,this.forbiddenNameValidator2(/password/) ]],
-  password:[''],
-  confirmPassword:[''],
-  address: this.formBuilder.group({
-    city:[''],
-    state:[''],
-    postalCode:['']
-  })
-})
+
 
   loadApiData(){
     this.registrationForm.patchValue/*setValue*/({
@@ -68,7 +111,9 @@ export class AcademicAdminComponent implements OnInit {
         postalCode:'test',
       }*/
     });
-
+  }
+  onSubmit(){
+    console.log(this.registrationForm.value);
   }
 
 }
